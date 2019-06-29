@@ -9,10 +9,10 @@ window.onload = function () {
     //helper functions
   
    function announceWin(playerTurn){
-     if(playerTurn.classList === "xPos-js"){
+     if(playerTurn.classList == "xPos-js"){
         swal("X Wins!", "success");
        }
-     if(playerTurn.classList === "oPos-js"){
+     if(playerTurn.classList == "oPos-js"){
        swal("O Wins!", "success");
      }
    }
