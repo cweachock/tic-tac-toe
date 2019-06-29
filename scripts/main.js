@@ -9,10 +9,10 @@ window.onload = function () {
     //helper functions
   
    function announceWin(playerTurn){
-     if(playerTurn.classList == "xPos-js"){
+     if(playerTurn.classList === "xPos-js"){
         swal("X Wins!", "success");
        }
-     if(playerTurn.classList == "oPos-js"){
+     if(playerTurn.classList === "oPos-js"){
        swal("O Wins!", "success");
      }
    }
@@ -73,6 +73,7 @@ window.onload = function () {
     function resetGameBoard(){
       for (var i=0; i<gameNodes.length; i++){
         gameNodes[i].innerHTML = '';
+        gameNodes[i].classList = '';
         turn='<i class="fas fa-times"></i>';
         displayTurn.innerHTML = '<i class="fas fa-times"></i> goes first';
       }
