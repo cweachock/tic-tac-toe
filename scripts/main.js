@@ -4,7 +4,7 @@ window.onload = function () {
     var resetButton = document.querySelector("div.game button.game-resetButton");
     var xArr = [];
     var oArr = [];
-    var xScore = 0;
+    var gameCount = 0;
     var displayTurn = document.querySelector("p.playerTurn");  
     
    
@@ -13,33 +13,49 @@ window.onload = function () {
      //diagnol wins
      if(xArr.includes("2") && xArr.includes("4") && xArr.includes("6") || (oArr.includes("2") && oArr.includes("4") && oArr.includes("6"))){
        announceWin(playerTurn);
+     }else{
+       announceDraw();
      }
      if(xArr.includes("0") && xArr.includes("4") && xArr.includes("8") || (oArr.includes("0") && oArr.includes("4") && oArr.includes("8"))){
        announceWin(playerTurn);
-     }
+     }else{
+      announceDraw();
+    }
      
      //vertical wins
      if(xArr.includes("0") && xArr.includes("3") && xArr.includes("6") || (oArr.includes("0") && oArr.includes("3") && oArr.includes("6"))){
        announceWin(playerTurn);
-     }
+     }else{
+      announceDraw();
+    }
      if(xArr.includes("1") && xArr.includes("4") && xArr.includes("7") || (oArr.includes("1") && oArr.includes("4") && oArr.includes("7"))){
        announceWin(playerTurn);
-     }
+     }else{
+      announceDraw();
+    }
      if(xArr.includes("2") && xArr.includes("5") && xArr.includes("8") || (oArr.includes("2") && oArr.includes("5") && oArr.includes("8"))){
        announceWin(playerTurn);
-     }
+     }else{
+      announceDraw();
+    }
      
      //horizontal wins
      if(xArr.includes("0") && xArr.includes("1") && xArr.includes("2") || (oArr.includes("0") && oArr.includes("1") && oArr.includes("2"))){
        announceWin(playerTurn);
-     }
+     }else{
+      announceDraw();
+    }
      if(xArr.includes("3") && xArr.includes("4") && xArr.includes("5") || (oArr.includes("3") && oArr.includes("4") && oArr.includes("5"))){
        announceWin(playerTurn);
-     }
+     }else{
+      announceDraw();
+    }
      if(xArr.includes("6") && xArr.includes("7") && xArr.includes("8") || (oArr.includes("6") && oArr.includes("7") && oArr.includes("8"))){
       announceWin(playerTurn);
-     }
-    
+     }else{
+      announceDraw();
+    }
+
     }
 
 
@@ -51,12 +67,15 @@ window.onload = function () {
         swal("O Wins!", "success");
       }
   }
-    
-  
-    
+
+  function announceDraw(){
+    if(gameCount == 9) {
+      swal("It's a draw!", "please try again");
+    }
+  }
+     
     function setTurn(playerTurn){
       var turnPos = playerTurn.getAttribute("data-pos");
-      var xOccupied = playerTurn.classList.contains("xPos-js");
       if(turn == '<i class="fas fa-times"></i>'){
         playerTurn.classList.add("xPos-js");
         xArr.push(turnPos);
@@ -69,16 +88,19 @@ window.onload = function () {
         turn = '<i class="fas fa-times"></i>';
       }
       checkForWin(playerTurn);
+      
     }
   
     function resetGameBoard(){
       for (var i=0; i<gameNodes.length; i++){
         gameNodes[i].innerHTML = '';
+        gameNodes[i].classList = '';
         turn='<i class="fas fa-times"></i>';
         displayTurn.innerHTML = '<i class="fas fa-times"></i> goes first';
       }
       xArr = [];
       oArr = [];
+      gameCount = 0;
     }
    
     function updateTurn(){
@@ -93,8 +115,9 @@ window.onload = function () {
             if (event.target && event.target.matches("li")) {
                 //check if its empty
                 if (event.target.innerHTML === ""){
+                   gameCount +=1;
                    event.target.innerHTML = '<span style="background-color:red;">' + turn + "</span>";
-                   setTurn(event.target); 
+                   setTurn(event.target);
                    updateTurn();
                 }
 
@@ -114,5 +137,4 @@ window.onload = function () {
     }
 
     addEventListeners();
-
 }
