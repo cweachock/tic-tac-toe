@@ -10,7 +10,6 @@ window.onload = function () {
    
   
    function checkForWin(playerTurn){ 
-     //diagnol wins
      if(xArr.includes("2") && xArr.includes("4") && xArr.includes("6") || (oArr.includes("2") && oArr.includes("4") && oArr.includes("6"))){
        announceWin(playerTurn);
      }else{
@@ -22,7 +21,6 @@ window.onload = function () {
       announceDraw();
     }
      
-     //vertical wins
      if(xArr.includes("0") && xArr.includes("3") && xArr.includes("6") || (oArr.includes("0") && oArr.includes("3") && oArr.includes("6"))){
        announceWin(playerTurn);
      }else{
@@ -39,7 +37,6 @@ window.onload = function () {
       announceDraw();
     }
      
-     //horizontal wins
      if(xArr.includes("0") && xArr.includes("1") && xArr.includes("2") || (oArr.includes("0") && oArr.includes("1") && oArr.includes("2"))){
        announceWin(playerTurn);
      }else{
@@ -59,7 +56,6 @@ window.onload = function () {
     }
 
 
-  //helper functions
    function announceWin(playerTurn){
     if(playerTurn.classList == "xPos-js"){
        swal("X Wins!", "success");
@@ -79,12 +75,10 @@ window.onload = function () {
       if(turn == '<i class="fas fa-times"></i>'){
         playerTurn.classList.add("xPos-js");
         xArr.push(turnPos);
-        console.log("this is the x array data: " + xArr);
         turn = '<i class="far fa-circle"></i>';
       }else{
         oArr.push(turnPos);
         playerTurn.classList.add("oPos-js");
-        console.log("this is the o array data: " + oArr);
         turn = '<i class="fas fa-times"></i>';
       }
       checkForWin(playerTurn);
@@ -108,12 +102,9 @@ window.onload = function () {
     }
 
     function addEventListeners() {
-        // board event listener delegation
         var gameBoard = document.getElementById("ticTacToeBoard");
         gameBoard.addEventListener('click', function(event) {
-            // event target was the clicked element
             if (event.target && event.target.matches("li")) {
-                //check if its empty
                 if (event.target.innerHTML === ""){
                    gameCount +=1;
                    event.target.innerHTML = '<span style="background-color:red;">' + turn + "</span>";
@@ -128,7 +119,6 @@ window.onload = function () {
             }
         }, false);
         
-        //add reset game listener
         resetButton.addEventListener('click', function(){
           resetGameBoard();
         }, false);
