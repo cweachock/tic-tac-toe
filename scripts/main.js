@@ -22,10 +22,10 @@ window.onload = function () {
      if(xArr.includes("0") && xArr.includes("3") && xArr.includes("6") || (oArr.includes("0") && oArr.includes("3") && oArr.includes("6"))){
        announceWin(playerTurn);
      }
-     if(xArr.includes("1") && xArr.includes("4") && xArr.includes("7") || (xArr.includes("1") && xArr.includes("4") && xArr.includes("7"))){
+     if(xArr.includes("1") && xArr.includes("4") && xArr.includes("7") || (oArr.includes("1") && oArr.includes("4") && oArr.includes("7"))){
        announceWin(playerTurn);
      }
-     if(xArr.includes("2") && xArr.includes("5") && xArr.includes("8") || (xArr.includes("2") && xArr.includes("5") && xArr.includes("8"))){
+     if(xArr.includes("2") && xArr.includes("5") && xArr.includes("8") || (oArr.includes("2") && oArr.includes("5") && oArr.includes("8"))){
        announceWin(playerTurn);
      }
      
