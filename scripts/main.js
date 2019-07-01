@@ -41,16 +41,11 @@ window.onload = function () {
     }
   }
     
-  function announceDraw(){
-    for (var i = 0; i < gameNodes.length; i++) {
-      if (gameNodes[i].classList != ""){
-          gameCount ++;
-     }
-  }
-    if(gameCount == 45){
+ function announceDraw(){
+    if(gameCount == 8){
       swal("It's a draw!", "try again");
-    }
-    
+      gameCount = 0;
+    }  
 }
 
   function setTurn(playerTurn) {
@@ -58,10 +53,12 @@ window.onload = function () {
     if (turn == '<i class="fas fa-times"></i>') {
       playerTurn.classList.add("xPos-js");
       xArr.push(turnPos);
+      console.log("this is the x array data: " + xArr);
       turn = '<i class="far fa-circle"></i>';
     } else {
       oArr.push(turnPos);
       playerTurn.classList.add("oPos-js");
+      console.log("this is the o array data: " + oArr);
       turn = '<i class="fas fa-times"></i>';
     }
     checkForWin(playerTurn);
@@ -79,7 +76,8 @@ window.onload = function () {
   }
 
   function updateTurn() {
-    displayTurn.innerHTML = "It's " + turn + "'s turn!"
+    displayTurn.innerHTML = "It's " + turn + "'s turn!";
+    gameCount +=1;
   }
 
   function addEventListeners() {
